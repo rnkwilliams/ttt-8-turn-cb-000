@@ -37,18 +37,18 @@ the_board = [" "," ","O"," ","O"," ","O"," "," "]
 puts "Turn 7"
 display_board(the_board)
 
-  
-  
+
+
 
   def valid_move? (board,index)
     index.between?(0,8) && !(position_taken?(board,index))
-  end 
+  end
 
 
   # re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
   def position_taken? (board, index)
     board[index] != " " && !(board[index] == nil || board[index] == "")
-  end 
+  end
 
 
 def move(board, index)
