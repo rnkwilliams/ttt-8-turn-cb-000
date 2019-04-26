@@ -1,54 +1,44 @@
-def display_board(the_board)
-  puts " #{the_board[0]} | #{the_board[1]} | #{the_board[2]} "
-  puts "-----------"
-  puts " #{the_board[3]} | #{the_board[4]} | #{the_board[5]} "
-  puts "-----------"
-  puts " #{the_board[6]} | #{the_board[7]} | #{the_board[8]} "
+def display_board(board)
+ print " #{board [0]} ", "|", " #{board [1]} ", "|", " #{board [2]} "
+ puts "\n"
+ print "-----------"
+ puts "\n"
+ print " #{board [3]} ", "|", " #{board [4]} ", "|", " #{board [5]} "
+ puts "\n"
+ print "-----------"
+ puts "\n"
+ print " #{board [6]} ", "|", " #{board [7]} ", "|", " #{board [8]} "
+ puts "\n"
 end
-#1	prints a blank board when the board array is empty
-the_board = [" "," "," "," "," "," "," "," "," "]
-display_board(the_board)
-#2 Prints a board with an X in the center position.
-the_board = [" "," "," "," ","X"," "," "," "," "]
-puts "Turn 1"
-display_board(the_board)
-#3 Prints a board with O in the top left
-the_board = ["O"," "," "," "," "," "," "," "," "]
-puts "Turn 2"
-display_board(the_board)
-#4 Prints a board with an X in the center and an O in the top left
-the_board = ["O"," "," "," ","X"," "," "," "," "]
-puts "Turn 3"
-display_board(the_board)
-#5 Prints a board with X winning via the top row
-the_board = ["X","X","X"," "," "," "," "," "," "]
-puts "Turn 4"
-display_board(the_board)
-#6 Prints a board with O winning via the bottom row
-the_board = [" "," "," "," "," "," ","O","O","O"]
-puts "Turn 5"
-display_board(the_board)
-#7 Prints a board with X winning in a top left to bottom right diagonal
-the_board = ["X"," "," "," ","X"," "," "," ","X"]
-puts "Turn 6"
-display_board(the_board)
-# Prints a board with O winning in a top right to bottom left diagonal
-the_board = [" "," ","O"," ","O"," ","O"," "," "]
-puts "Turn 7"
-display_board(the_board)
+
+def valid_move? (board,index)
+  index.between?(0,8) && !(position_taken?(board,index))
+end
+
+
+# re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
+def position_taken? (board, index)
+  board[index] != " " && !(board[index] == nil || board[index] == "")
+end
+
+def input_to_index(user_input)
+  user_input.to_i - 1
+end
+
+def move (board, index, player_character="X")
+  puts board[index] = player_character
+end
 
 
 
-
-  def valid_move? (board,index)
-    index.between?(0,8) && !(position_taken?(board,index))
+def turn(board)
+  puts "Please enter 1-9:"
+  user_input = gets.strip
+  index = input_to_index(user_input)
+  if (valid_move?(board,index))
+    move(board,index)
+    display_board(board)
+  else
+    turn(board)
   end
-
-
-  # re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
-  def position_taken? (board, index)
-    board[index] != " " && !(board[index] == nil || board[index] == "")
-  end
-
-
-def move(board, index)
+end 
