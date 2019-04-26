@@ -5,4 +5,3 @@ the_board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
 puts "Welcome to Tic Tac Toe!"
 display_board(the_board)
-end
